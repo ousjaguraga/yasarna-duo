@@ -67,7 +67,9 @@
   .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .face.back { transform: rotateY(180deg); }
   .face.back > img { object-fit: contain; object-position: center; }
-  .shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(0,0,0,.28), rgba(0,0,0,0) 60%); opacity: var(--shade, 0); border-radius: 0 6% 6% 0 / 0 4% 4% 0; }
+  /* The cover's shadow falls on the device itself, never on the page around it. */
+  .half.right > img { filter: brightness(calc(1 - var(--shade, 0) * 0.32)); }
+  .half.left .face.front > img { filter: brightness(calc(1 - var(--shade, 0) * 0.12)); }
   .flat { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
   .flat.on { opacity: 1; }
   .framed { position: relative; width: 100%; aspect-ratio: 3093 / 2247; }
@@ -162,7 +164,7 @@
       <p class="caption" data-step="1">Open, it’s the book.<span>Two facing pages, just as in your hands.</span></p>
     </div>
     <div class="device" id="device" style="--angle:180;--shift:-25">
-      <div class="half right"><img src="images/duo-open-right.webp" alt=""><div class="shade"></div></div>
+      <div class="half right"><img src="images/duo-open-right.webp" alt=""></div>
       <div class="half left">
         <div class="face front"><img src="images/duo-open-left.webp" alt=""></div>
         <div class="face back"><img src="images/duo-closed.webp" alt="iPhone Duo, closed, showing a mushaf page on its cover screen"></div>
@@ -256,7 +258,6 @@
 (() => {
   const device = document.getElementById('device');
   const section = document.querySelector('.unfold');
-  const shade = document.querySelector('.half.right .shade');
   const captions = [...document.querySelectorAll('.caption')];
   const flat = document.getElementById('flat');
   const filmVideo = document.getElementById('film-video');
@@ -273,7 +274,7 @@
     device.style.setProperty('--angle', (180 * (1 - t)).toFixed(2));
     device.style.setProperty('--shift', (-25 * (1 - t)).toFixed(2));
     device.style.setProperty('--open', t.toFixed(3));
-    shade.style.setProperty('--shade', (Math.sin(t * Math.PI) * 0.8).toFixed(3));
+    device.style.setProperty('--shade', Math.sin(t * Math.PI).toFixed(3));
     const step = t > 0.55 ? 1 : 0;
     captions.forEach((c, i) => c.classList.toggle('on', i === step));
     flat.classList.toggle('on', t > 0.995);
