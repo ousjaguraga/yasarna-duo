@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yasarna Duo</title>
+<meta name="description" content="The Madinah mushaf as it is printed, page by page, for iPhone Duo and iPad. 40 reciters, Tafsir Ibn Kathir and an assistant that answers on your device.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="images/icon.png">
+<style>
+  :root {
+    --paper: #fcf6e9; --card: #f4ecdb; --ink: #1a1713; --muted: #6b6257;
+    --accent: #14664f; --gold: #c9a45c; --rule: #e3d3ad;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #12110f; --card: #1d1b17; --ink: #ece4d4; --muted: #a59c8c; --accent: #6fbf9f; --gold: #c9a45c; --rule: #3a3326; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.6 Georgia, "Times New Roman", serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header.hero { text-align: center; padding: 64px 0 40px; }
+  .icon { width: 120px; height: 120px; border-radius: 27px; box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+  .arabic { font-size: 2.6rem; color: var(--gold); margin: 18px 0 0; line-height: 1.2; }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 4px 0 8px; letter-spacing: -0.01em; }
+  .tagline { font-size: 1.25rem; color: var(--muted); max-width: 640px; margin: 0 auto; }
+  .devices { display: inline-flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; justify-content: center; }
+  .pill { font: 600 0.9rem/1 -apple-system, system-ui, sans-serif; padding: 10px 16px; border-radius: 999px; background: var(--card); border: 1px solid var(--rule); }
+  .soon { margin-top: 18px; font: 600 1rem -apple-system, system-ui, sans-serif; color: var(--accent); }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 24px 0 8px; }
+  .shots img { width: 100%; border-radius: 18px; border: 1px solid var(--rule); box-shadow: 0 10px 28px rgba(0,0,0,.12); display: block; }
+  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding: 40px 0; }
+  .feature { background: var(--card); border: 1px solid var(--rule); border-radius: 20px; padding: 22px 24px; }
+  .feature h2 { margin: 0 0 8px; font-size: 1.25rem; color: var(--accent); }
+  .feature ul { margin: 0; padding-left: 1.1em; }
+  .feature li { margin: 4px 0; }
+  .note { text-align: center; color: var(--muted); max-width: 680px; margin: 0 auto; padding: 8px 0 40px; }
+  footer { border-top: 1px solid var(--rule); padding: 24px 0 48px; text-align: center; color: var(--muted); font-size: 0.95rem; }
+  footer a { margin: 0 10px; }
+  @media (max-width: 760px) {
+    .shots { grid-template-columns: repeat(2, 1fr); }
+    .features { grid-template-columns: 1fr; }
+    .arabic { font-size: 2.1rem; }
+  }
+</style>
+</head>
+<body>
+<header class="hero wrap">
+  <img class="icon" src="images/icon.png" alt="Yasarna Duo app icon">
+  <p class="arabic" lang="ar" dir="rtl">وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ</p>
+  <h1>Yasarna Duo</h1>
+  <p class="tagline">The Madinah mushaf, exactly as it is printed, page by page — made for the open book of the iPhone Duo and for iPad.</p>
+  <div class="devices"><span class="pill">iPhone Duo</span><span class="pill">iPad</span><span class="pill">Free</span></div>
+  <p class="soon">Coming soon to the App Store</p>
+</header>
+
+<main class="wrap">
+  <section class="shots" aria-label="Screenshots">
+    <img src="images/01-mushaf.jpg" alt="A page of the Madinah mushaf">
+    <img src="images/02-recitation.jpg" alt="The reciter's ayah lit on the page, with the player">
+    <img src="images/03-ask.jpg" alt="Ask Yasarna beside the page it recites">
+    <img src="images/05-study.jpg" alt="Translation of an ayah">
+    <img src="images/06-midnight.jpg" alt="The mushaf in a night theme">
+    <img src="images/07-game.jpg" alt="Name the Surah game">
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h2>Read</h2>
+      <ul>
+        <li>The complete King Fahd Complex mushaf, fifteen lines to a page, turned like paper</li>
+        <li>On the unfolded iPhone Duo and iPad, two facing pages — or the Quran beside its translation or tafsir</li>
+        <li>Ten reading themes, from classic paper to a calm night</li>
+        <li>The whole Quran, translations and tafsir work offline</li>
+      </ul>
+    </div>
+    <div class="feature">
+      <h2>Listen</h2>
+      <ul>
+        <li>40 reciters, including Mishary Alafasy, Al-Husary, As-Sudais and Abdul Basit</li>
+        <li>Tap any ayah to hear it; the reciter's ayah lights up and the pages turn with the recitation</li>
+        <li>Recite a page, surah, juz or onward; repeat, loop and change speed</li>
+        <li>Download surahs to listen anywhere</li>
+      </ul>
+    </div>
+    <div class="feature">
+      <h2>Understand</h2>
+      <ul>
+        <li>Tafsir Ibn Kathir (abridged, English) for every ayah</li>
+        <li>English and Spanish translations; Soninke for Surah Al-Baqarah, with more to come</li>
+        <li>Ask Yasarna: “Play Ayatul Kursi”, “Ayat about patience”, “Explain 112:1” — answered on your device</li>
+      </ul>
+    </div>
+    <div class="feature">
+      <h2>Practise</h2>
+      <ul>
+        <li>Name the Surah: a reciter begins somewhere in the Quran — name the surah before the light fades</li>
+        <li>Five levels, from Talib to Hafiz</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="note">No account, no ads, no tracking. Yasarna Duo collects no data at all.</p>
+</main>
+
+<footer class="wrap">
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="https://github.com/ousjaguraga/yasarna-duo/issues">Contact &amp; support</a>
+  <p>© 2026 Ousman Jaguraga</p>
+</footer>
+</body>
+</html>
