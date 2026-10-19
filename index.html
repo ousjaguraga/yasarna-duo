@@ -58,26 +58,23 @@
   .caption { position: absolute; inset: 0; font-size: clamp(28px, 4.6vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); opacity: 0; transition: opacity .35s ease; }
   .caption span { display: block; font-size: clamp(17px, 2vw, 21px); font-weight: 400; color: var(--muted); margin-top: 8px; letter-spacing: .01em; }
   .caption.on { opacity: 1; }
-  .device { --w: min(90vw, calc((100vh - 52px - 220px) * 1.4216), 1060px); position: relative; width: var(--w); aspect-ratio: 2853 / 2007; perspective: 2600px; transform: translateX(calc(var(--shift, -25) * 1%)); }
-  .device::after { content: ""; position: absolute; left: calc(53% - 47% * var(--open, 0)); right: 3%; bottom: -7%; height: 10%; background: radial-gradient(closest-side, rgba(18,53,47,.28), transparent); filter: blur(8px); z-index: -1; }
+  .device { --w: min(92vw, calc((100vh - 52px - 270px) * 1.3765), 1040px); position: relative; width: var(--w); aspect-ratio: 3093 / 2247; perspective: 2800px; transform: translateX(calc(var(--shift, -25) * 1%)); }
+  .device::after { content: ""; position: absolute; left: calc(53% - 47% * var(--open, 0)); right: 4%; bottom: -5%; height: 9%; background: radial-gradient(closest-side, rgba(18,53,47,.30), transparent); filter: blur(10px); z-index: -1; }
   .half { position: absolute; top: 0; bottom: 0; width: 50%; }
+  .half > img, .face > img { width: 100%; height: 100%; display: block; }
   .half.right { right: 0; }
   .half.left { left: 0; transform-origin: right center; transform-style: preserve-3d; transform: rotateY(calc(var(--angle, 180) * 1deg)); }
-  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 2.4% 0 2.4% 2.4%; background: linear-gradient(160deg, #e6ece9, #b9c2be 55%, #dfe5e2); }
-  .half.right .face { padding: 2.4% 2.4% 2.4% 0; border-radius: 0 7% 7% 0 / 0 5.2% 5.2% 0; }
-  .half.left .face.front { border-radius: 7% 0 0 7% / 5.2% 0 0 5.2%; }
-  .half.left .face.back { transform: rotateY(180deg); padding: 2.4% 0 2.4% 2.4%; border-radius: 7% 0 0 7% / 5.2% 0 0 5.2%; }
-  .screen { width: 100%; height: 100%; overflow: hidden; background: #000; }
-  .half.right .screen { border-radius: 0 5.4% 5.4% 0 / 0 3.9% 3.9% 0; }
-  .half.left .face.front .screen { border-radius: 5.4% 0 0 5.4% / 3.9% 0 0 3.9%; }
-  .half.left .face.back .screen { border-radius: 5.4% 0 0 5.4% / 3.9% 0 0 3.9%; }
-  .screen img { width: 200%; max-width: none; height: 100%; object-fit: cover; }
-  .half.right .screen img { transform: translateX(-50%); }
-  .face.back .screen img { width: 100%; }
-  .shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,.35)); opacity: var(--shade, 0); }
-  .hinge { position: absolute; top: 1.5%; bottom: 1.5%; left: 50%; width: 1.2%; transform: translateX(-50%); background: linear-gradient(90deg, rgba(0,0,0,.18), rgba(255,255,255,.25), rgba(0,0,0,.18)); border-radius: 4px; opacity: var(--open, 0); }
-  .film { position: absolute; top: 3.4%; bottom: 3.4%; left: 2.4%; right: 2.4%; border-radius: 3.6% / 5.2%; overflow: hidden; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
-  .film video { width: 100%; height: 100%; object-fit: cover; }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .face.back { transform: rotateY(180deg); }
+  .face.back > img { object-fit: contain; object-position: center; }
+  .shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(0,0,0,.28), rgba(0,0,0,0) 60%); opacity: var(--shade, 0); border-radius: 0 6% 6% 0 / 0 4% 4% 0; }
+  .flat { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  .flat.on { opacity: 1; }
+  .framed { position: relative; width: 100%; aspect-ratio: 3093 / 2247; }
+  .framed .hole { position: absolute; left: 3.88%; top: 5.34%; width: 92.24%; height: 89.32%; overflow: hidden; background: #000; }
+  .framed .hole > * { width: 100%; height: 100%; object-fit: cover; }
+  .framed > img.frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .film { opacity: 0; transition: opacity .7s ease; }
   .film.on { opacity: 1; }
 
   /* Sections */
@@ -87,8 +84,7 @@
   .tile .lead { font-size: clamp(19px, 2.2vw, 24px); line-height: 1.38; color: var(--muted); max-width: 720px; margin: 18px auto 0; letter-spacing: .01em; }
   .tile .lead strong { color: var(--ink); font-weight: 600; }
   .media { margin: 54px auto 0; }
-  .flat-duo { width: min(100%, 980px); margin: 0 auto; aspect-ratio: 2853 / 2007; padding: 1.4%; border-radius: 4% / 5.7%; background: linear-gradient(160deg, #e6ece9, #b9c2be 55%, #dfe5e2); box-shadow: 0 30px 70px rgba(18,53,47,.18); }
-  .flat-duo > * { width: 100%; height: 100%; object-fit: cover; border-radius: 3% / 4.3%; }
+  .flat-duo { width: min(100%, 1000px); margin: 0 auto; filter: drop-shadow(0 30px 40px rgba(18,53,47,.18)); }
 
   /* Highlights, as a scrolling gallery of cards */
   .highlights { background: var(--paper); padding: 110px 0 120px; }
@@ -166,13 +162,15 @@
       <p class="caption" data-step="1">Open, it’s the book.<span>Two facing pages, just as in your hands.</span></p>
     </div>
     <div class="device" id="device" style="--angle:180;--shift:-25">
-      <div class="half right"><div class="face"><div class="screen"><img src="images/duo-inner.jpg" alt=""></div></div><div class="shade" style="--shade:0"></div></div>
+      <div class="half right"><img src="images/duo-open-right.webp" alt=""><div class="shade"></div></div>
       <div class="half left">
-        <div class="face front"><div class="screen"><img src="images/duo-inner.jpg" alt="Two facing pages of the Madinah mushaf on iPhone Duo"></div></div>
-        <div class="face back"><div class="screen"><img src="images/duo-outer.jpg" alt="A mushaf page on the iPhone Duo's cover screen"></div></div>
+        <div class="face front"><img src="images/duo-open-left.webp" alt=""></div>
+        <div class="face back"><img src="images/duo-closed.webp" alt="iPhone Duo, closed, showing a mushaf page on its cover screen"></div>
       </div>
-      <div class="hinge"></div>
-      <div class="film" id="film"><video src="video/promo.mp4" muted loop playsinline preload="none" aria-label="Yasarna Duo in use"></video></div>
+      <div class="flat framed" id="flat">
+        <div class="hole"><img src="images/duo-inner.jpg" alt="Two facing pages of the Madinah mushaf on iPhone Duo"><video class="film" id="film-video" src="video/promo.mp4" muted loop playsinline preload="none" aria-label="Yasarna Duo in use" style="position:absolute;inset:0"></video></div>
+        <img class="frame" src="images/duo-frame-open.webp" alt="">
+      </div>
     </div>
   </div>
 </section>
@@ -183,7 +181,7 @@
     <p class="lead">Swipe, or tap the margin, and the leaf lifts and turns from right to left, the way a mushaf is read. <strong>All 604 pages are drawn from the original King Fahd Complex artwork</strong> — and every one of them is on your device.</p>
   </div>
   <div class="wrap media reveal">
-    <div class="flat-duo"><video src="video/pageturn.mp4" poster="images/duo-turn.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A page of the mushaf turning on iPhone Duo"></video></div>
+    <div class="flat-duo framed"><div class="hole"><video src="video/pageturn.mp4" poster="images/duo-turn.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A page of the mushaf turning on iPhone Duo"></video></div><img class="frame" src="images/duo-frame-open-white.webp" alt=""></div>
   </div>
 </section>
 
@@ -193,7 +191,7 @@
     <p class="lead">Tap an ayah and it is recited at once, <strong>lit softly on the page as the reciter reads it</strong>. The pages turn with the recitation — a page, a surah, a juz, or onward.</p>
   </div>
   <div class="wrap media reveal">
-    <div class="flat-duo"><img src="images/duo-recite.jpg" alt="An ayah lit on the page as it is recited, with the player" loading="lazy"></div>
+    <div class="flat-duo framed"><div class="hole"><img src="images/duo-recite.jpg" alt="An ayah lit on the page as it is recited" loading="lazy"></div><img class="frame" src="images/duo-frame-open.webp" alt="" loading="lazy"></div>
   </div>
 </section>
 
@@ -260,8 +258,8 @@
   const section = document.querySelector('.unfold');
   const shade = document.querySelector('.half.right .shade');
   const captions = [...document.querySelectorAll('.caption')];
-  const film = document.getElementById('film');
-  const filmVideo = film.querySelector('video');
+  const flat = document.getElementById('flat');
+  const filmVideo = document.getElementById('film-video');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -275,11 +273,12 @@
     device.style.setProperty('--angle', (180 * (1 - t)).toFixed(2));
     device.style.setProperty('--shift', (-25 * (1 - t)).toFixed(2));
     device.style.setProperty('--open', t.toFixed(3));
-    shade.style.setProperty('--shade', (Math.sin(t * Math.PI) * 0.9).toFixed(3));
+    shade.style.setProperty('--shade', (Math.sin(t * Math.PI) * 0.8).toFixed(3));
     const step = t > 0.55 ? 1 : 0;
     captions.forEach((c, i) => c.classList.toggle('on', i === step));
+    flat.classList.toggle('on', t > 0.995);
     const playing = p > 0.8;
-    film.classList.toggle('on', playing);
+    filmVideo.classList.toggle('on', playing);
     if (playing && filmVideo.paused) { filmVideo.preload = 'auto'; filmVideo.play().catch(() => {}); }
     if (!playing && !filmVideo.paused) filmVideo.pause();
   }
