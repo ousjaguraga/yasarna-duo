@@ -66,6 +66,10 @@
   .half.left { left: 0; transform-origin: right center; transform-style: preserve-3d; transform: rotateY(calc(var(--angle, 180) * 1deg)); }
   .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .face.back { transform: rotateY(180deg); }
+  /* The cover's titanium edge, so it has body as it passes edge-on. */
+  .edge { position: absolute; left: 3.4%; top: 6%; bottom: 6.4%; width: 4.2%; opacity: var(--edge, 0); transform-origin: left center; transform: rotateY(90deg);
+          border-radius: 3px; background: linear-gradient(180deg, #3b4558 0%, #1b2230 12%, #262f40 50%, #1b2230 88%, #3b4558 100%);
+          box-shadow: inset 1px 0 0 rgba(255,255,255,.18), inset -1px 0 0 rgba(0,0,0,.4); }
   .face.back > img { object-fit: contain; object-position: center; }
   /* The cover's shadow falls on the device itself, never on the page around it. */
   .half.right > img { filter: brightness(calc(1 - var(--shade, 0) * 0.32)); }
@@ -168,6 +172,7 @@
       <div class="half left">
         <div class="face front"><img src="images/duo-open-left.webp" alt=""></div>
         <div class="face back"><img src="images/duo-closed.webp" alt="iPhone Duo, closed, showing a mushaf page on its cover screen"></div>
+        <div class="edge"></div>
       </div>
       <div class="flat framed" id="flat">
         <div class="hole"><img src="images/duo-inner.jpg" alt="Two facing pages of the Madinah mushaf on iPhone Duo"><video class="film" id="film-video" src="video/promo.mp4" muted loop playsinline preload="none" aria-label="Yasarna Duo in use" style="position:absolute;inset:0"></video></div>
@@ -270,9 +275,17 @@
     const travel = section.offsetHeight - innerHeight;
     const p = reduce ? 1 : clamp(-rect.top / travel);
     // 0–0.18 folded, 0.18–0.72 the cover swings open, then it rests open and the film plays.
-    const t = ease(clamp((p - 0.18) / 0.54));
-    device.style.setProperty('--angle', (180 * (1 - t)).toFixed(2));
-    device.style.setProperty('--shift', (-25 * (1 - t)).toFixed(2));
+    const e = ease(clamp((p - 0.18) / 0.54));
+    // Pass quickly through the moment the cover is edge-on, and linger closed and open.
+    const t = clamp(e - 0.1 * Math.sin(2 * Math.PI * e));
+    const angle = 180 * (1 - t);
+    device.style.setProperty('--angle', angle.toFixed(2));
+    // Keep the part of the Duo you can see centred: the right half while the cover lies over
+    // it, then growing evenly to both sides as the cover opens out to the left.
+    const spread = angle >= 90 ? 0 : Math.cos(angle * Math.PI / 180);
+    device.style.setProperty('--shift', (-25 * (1 - spread)).toFixed(2));
+    // The edge is seen only while the cover is near edge-on.
+    device.style.setProperty('--edge', angle >= 90 ? clamp(1 - (angle - 90) / 45).toFixed(3) : '0');
     device.style.setProperty('--open', t.toFixed(3));
     device.style.setProperty('--shade', Math.sin(t * Math.PI).toFixed(3));
     const step = t > 0.55 ? 1 : 0;
